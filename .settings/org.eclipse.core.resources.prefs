@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/luoxiao/controller/Aspect/LogAspect.java=UTF-8
+encoding//src/main/java/com/luoxiao/controller/MainController.java=UTF-8
+encoding//src/main/java/com/luoxiao/model/UserRoleTemp.java=UTF-8
+encoding//src/main/java/com/luoxiao/realm/MyRealm.java=UTF-8
+encoding//src/main/java/com/luoxiao/service/UserService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/view/cms/permissionManage.jsp=UTF-8

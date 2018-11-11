@@ -15,6 +15,7 @@ import java.util.List;
  *
  */
 @Controller
+@RequestMapping(value="/cms")
 public class CMSController {
 
 	@Autowired
@@ -25,18 +26,18 @@ public class CMSController {
 	 * 角色页面
 	 * @return
 	 */
-	@RequestMapping("cms/permissionManage")
+	@RequestMapping(value="/permissionManage")
 	public String toPermissionPage() {
 		return "cms/permissionManage";
 	}
 
-	@RequestMapping("cms/userList")
+	@RequestMapping(value="/userList")
 	public String userList(){
 		return "cms/userList";
 	}
 
 	@ResponseBody
-	@RequestMapping("cms/AllUser")
+	@RequestMapping(value="/AllUser")
 	public List<User> getAllUser(){
 		return userService.selectAll();
 	}

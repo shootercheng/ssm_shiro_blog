@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<title>用户登录</title>
+<link rel="stylesheet" href="style/css/bootstrap.min.css">  
+<script type="text/javascript" src="style/js/jquery.min.js"></script>
+<script type="text/javascript" src="style/js/bootstrap.min.js"></script>
+<style type="text/css">
+	#horizontal {
+		margin-top : 10%;
+		margin-bottom : 20%;
+		width : 30%;
+		padding : 20px;
+	}
+	.spanblue {
+		color: blue;
+	}
+</style>
+<script type="text/javascript">
+	function openModal(id){
+		$("#"+id).modal('show');
+	}
+	
+	function rsubmit(){
+		//校验表单空的情况
+		var username = $("#username").val();
+		if(username == ""){
+			$("#spanUsername").html("<b style='color:red;margin-top:auto;'>用户名为空!</b>");
+			$("#spanUsername").attr('hidden',false);
+			return ;
+		}else{
+			$("#spanUsername").html("");
+			$("#spanUsername").attr('hidden',true);
+		}
+		var	password = $("#password").val();
+		if(password == ""){
+			$("#spanPassword").html("<b style='color:red;margin-top:auto;'>密码为空!</b>");
+			$("#spanPassword").attr('hidden',false);
+			return ;
+		}else{
+			$("#spanPassword").html("");
+			$("#spanPassword").attr('hidden',true);
+		}
+		var	rpassword = $("#rpassword").val();
+		if(rpassword == ""){
+			$("#spanRpassword").html("<b style='color:red;margin-top:auto;'>再次输入密码为空!</b>");
+			$("#spanRpassword").attr('hidden',false);
+			return ;
+		}else{
+			$("#spanRpassword").html("");
+			$("#spanRpassword").attr('hidden',true);
+		}
+		var	email = $("#email").val();
+		if(email == ""){
+			$("#spanEmail").html("<b style='color:red;margin-top:auto;'>邮箱为空!</b>");
+			$("#spanEmail").attr('hidden',false);
+			return ;
+		}else {
+			$("#spanEmail").html("");
+			$("#spanEmail").attr('hidden',true);
+		}
+		var	birth = $("#birth").val();
+		if(birth == ""){
+			$("#spanBirth").html("<b style='color:red;margin-top:auto;'>出生年月日为空!</b>");
+			$("#spanBirth").attr('hidden',false);
+			return ;
+		}else{
+			$("#spanBirth").html("");
+			$("#spanBirth").attr('hidden',true);
+		}
+		//校验用户名重复
+		
+		//校验两次密码相同问题
+		if(!pwdValidate()){
+			return ;
+		}
+		//校验邮箱
+		if(!emailValidate()){
+			return ;
+		}
+		//登录
+		alert("register ...")
+		return ;
+	}
+	
+	function ulogin(){
+		$("#loginInfo").html(
+		"<b style='color:red;font-size:15px;'>用户名不能为空！</b>");
+		//手动关闭模态窗口
+		//$("#loginModal").modal('hide');
+		return ;
+	}
+	
+	function pwdValidate(){
+		var password = $("#password").val();
+		var rpassword = $("#rpassword").val();
+		if(password != rpassword){
+			$("#spanRpassword").html("<b style='color:red;margin-top:auto;'>两次输入密码不相同!</b>");
+			$("#spanRpassword").attr('hidden',false);
+			//document.getElementById("usubmit").disabled=true;
+			return false;
+		}else{
+			$("#spanRpassword").html("");
+			$("#spanRpassword").attr('hidden',true);
+			//document.getElementById("usubmit").disabled=false;
+			return true;
+		}
+	}
+	
+	function emailValidate(){
+		var email = $("#email").val();
+		var emailPatt = new RegExp('^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$');
+		if(!emailPatt.test(email)){
+			$("#spanEmail").html("<b style='color:red;margin-top:auto;'>邮箱格式不正确!</b>");
+			$("#spanEmail").attr('hidden',false);
+			//document.getElementById("usubmit").disabled=true;
+			return false;
+		}else {
+			$("#spanEmail").html("");
+			$("#spanEmail").attr('hidden',true);
+			//document.getElementById("usubmit").disabled=false;
+			return true;
+		}
+	}
+	
+	function formValidate(){
+	}
+</script>
+</head>
+<body>
+<div class="container" id="horizontal">
+	<div class="row">
+		<div class="col-xs-6 col-sm-6">
+			<a data-toggle="modal" data-target="#registerModal" href="" style="font-size:30px;"><span class="glyphicon glyphicon-user spanblue"></span>注册</a>
+		</div>
+		<div class="col-xs-6 col-sm-6">
+			<a data-toggle="modal" data-target="#loginModal" href="" style="font-size:30px;"><span class="glyphicon glyphicon-log-in spanblue"></span>登录</a>
+		</div>
+	</div>
+</div>
+<!-- 注册窗口 -->
+<div id="registerModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h1 class="text-center text-primary">欢迎注册</h1>
+				</div>
+				<div class="modal-title">
+					<!--<h1 class="text-center">注册</h1>-->
+				</div>
+				<div class="modal-body">
+					<form class="form col-md-12 center-block" action="" id="registerForm" method="post">
+							<div class="form-group">
+								<label for="username" >用户名</label>
+								<input class="form-control" name="username" type="text" id="username" maxlength="10" placeholder="请输入用户名"  autofocus />
+								<label id="spanUsername" hidden="true"></label>
+							</div>
+							<div class="form-group">
+								<label for="password" >密码</label>
+								<input class="form-control" name="password" type="password" id="password" maxlength="20" placeholder="请输入密码" />
+								<label id="spanPassword" hidden="true"></label>
+							</div>
+							<div class="form-group">
+								<label for="rpassword">再次输入密码</label>
+								<input class="form-control" name="rpassword" type="password" id="rpassword" maxlength="20" 
+									placeholder="请再次输入密码" onblur="pwdValidate()" />
+								<label id="spanRpassword" hidden="true"></label>
+							</div>
+							<div class="form-group">
+								<label for="email" >Email</label>
+								<input class="form-control" name="email" type="email" id="email" maxlength="20" placeholder="Email" 
+								onblur="emailValidate()" />
+								<label id="spanEmail" hidden="true"></label>
+							</div>
+							<div class="form-group">
+								<label for="birthDate" >出生年月</label>
+								<input class="form-control" name="birth" type="date" id="birthDate" />
+								<label id="spanBirth" hidden="true"></label>
+							</div>
+							<div class="form-group">
+								<label for="">性别</label>
+								<div class="row">
+									<div class="col-sm-2">
+										<label class="radio-inline"> 
+											<input name="gender" class="gender" type="radio" id="maleRadio" value="男" checked=true />男
+										</label>
+									</div>
+									<div class="col-sm-2">
+										<label class="radio-inline"> 
+											<input name="gender" class="gender" type="radio" id="femaleRadio" value="女" />女
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="text-right">
+								<button class="btn btn-primary" type="button" id="usubmit" onclick="rsubmit()">提交</button>
+								<button class="btn btn-danger" data-dismiss="modal">取消</button>
+							</div>
+							<a href="" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">已有账号？点我登录</a>
+					</form>
+					<span></span>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+</div>
+
+
+<!-- 登录窗口 -->
+<div id="loginModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h1 class="text-center text-primary">欢迎登录</h1>
+				</div>
+				<div class="modal-title">
+					<!--<h1 class="text-center">欢迎登录</h1>-->
+				</div>
+				<div class="modal-body">
+					<form id="loginForm" action="user/login" method="post" class="form col-md-12 center-block">
+						<div class="form-group">
+							<input id="lusername" name="username" type="text"
+								class="form-control input-lg" placeholder="用户名">
+						</div>
+						<div class="form-group">
+							<input id="lpassword" name="password" type="password"
+								class="form-control input-lg" placeholder="登录密码">
+						</div>
+						<div class="form-group">
+							<div id="loginInfo"></div>
+						</div>
+						<div class="text-right">
+							<button id="submit1" class="btn btn-primary" type="button" onclick="ulogin()">立刻登录</button>
+							<button class="btn btn-danger" data-dismiss="modal">取消</button>
+						</div>
+						<a href="" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">还没有账号？点我注册</a>
+					</form>
+					<span></span>
+				</div>
+				<div class="modal-footer text-right"></div>
+			</div>
+		</div>
+</div>
+</body>
+</html>

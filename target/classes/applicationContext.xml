@@ -102,20 +102,29 @@
 
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
+	<bean id="anyRolesAuthorizationFilter" class="com.luoxiao.filter.AnyRolesAuthorizationFilter" />
 
 	<!-- Shiro过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.html" />
 		<!-- 权限认证失败，则跳转到指定页面 -->
 		<!-- <property name="unauthorizedUrl" value="/user/login?msg=unlogin or 
 			unauthorized" /> -->
+		<property name="filters">
+			<map>
+				<entry key="anyRoles" value-ref="anyRolesAuthorizationFilter"></entry>
+			</map>
+		</property>
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- 静态文件 -->
 				/style/** = anon
-				/cms/** = authc,roles[admin]
+				<!-- /cms/** = authc,roles[admin]-->
+				/cms/** = anyRoles[admin,user]
 				/** = anon
 				/user/** = anon
 			</value>

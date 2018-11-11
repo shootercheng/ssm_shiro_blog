@@ -27,6 +27,11 @@ body {
 	padding-left: 20px;
 }
 </style>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		alert('${pageContext.request.contextPath}');
+	});
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -198,8 +203,7 @@ body {
 				return;
 			}
 			/* ajax验证密码 */
-			$
-					.ajax({
+			$.ajax({
 						type : "GET",
 						url : "validatePassword",
 						data : {
@@ -232,8 +236,7 @@ body {
 		});
 
 		/* 天气预报 */
-		$
-				.getScript(
+		$.getScript(
 						'http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&day=0&city=&dfc=1&charset=utf-8',
 						function(a) {
 							var s = "", r = "", q = "";

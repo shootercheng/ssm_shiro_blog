@@ -26,14 +26,11 @@ public class MyRealm extends AuthorizingRealm {
 	 * 登录之后用于授权
 	 */
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(
-			PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String username = (String) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-		authorizationInfo.setRoles(new HashSet<>(userExtendDao
-				.getRoles(username)));
-		authorizationInfo.setStringPermissions(new HashSet<>(userExtendDao
-				.getPermissions(username)));
+		authorizationInfo.setRoles(new HashSet<>(userExtendDao.getRoles(username)));
+		authorizationInfo.setStringPermissions(new HashSet<>(userExtendDao.getPermissions(username)));
 		return authorizationInfo;
 	}
 
@@ -41,8 +38,7 @@ public class MyRealm extends AuthorizingRealm {
 	 * 用于验证身份
 	 */
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(
-			AuthenticationToken token) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String) token.getPrincipal();
 		User user = userExtendDao.selectByUsername(username);
 		if (null != user) {

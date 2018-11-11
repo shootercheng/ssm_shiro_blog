@@ -124,7 +124,7 @@
 				<!-- 静态文件 -->
 				/style/** = anon
 				<!-- /cms/** = authc,roles[admin]-->
-				/cms/** = anyRoles[admin,user]
+				/cms/** = anyRoles[admin]
 				/** = anon
 				/user/** = anon
 			</value>

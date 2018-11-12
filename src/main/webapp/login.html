@@ -25,50 +25,20 @@
 	
 	function rsubmit(){
 		//校验表单空的情况
-		var username = $("#username").val();
-		if(username == ""){
-			$("#spanUsername").html("<b style='color:red;margin-top:auto;'>用户名为空!</b>");
-			$("#spanUsername").attr('hidden',false);
+		if(!userNameonblur()){
 			return ;
-		}else{
-			$("#spanUsername").html("");
-			$("#spanUsername").attr('hidden',true);
 		}
-		var	password = $("#password").val();
-		if(password == ""){
-			$("#spanPassword").html("<b style='color:red;margin-top:auto;'>密码为空!</b>");
-			$("#spanPassword").attr('hidden',false);
+		if(!passwordonblur()){
 			return ;
-		}else{
-			$("#spanPassword").html("");
-			$("#spanPassword").attr('hidden',true);
 		}
-		var	rpassword = $("#rpassword").val();
-		if(rpassword == ""){
-			$("#spanRpassword").html("<b style='color:red;margin-top:auto;'>再次输入密码为空!</b>");
-			$("#spanRpassword").attr('hidden',false);
+		if(!rpasswordobblur()){
 			return ;
-		}else{
-			$("#spanRpassword").html("");
-			$("#spanRpassword").attr('hidden',true);
 		}
-		var	email = $("#email").val();
-		if(email == ""){
-			$("#spanEmail").html("<b style='color:red;margin-top:auto;'>邮箱为空!</b>");
-			$("#spanEmail").attr('hidden',false);
+		if(!emailonblur()){
 			return ;
-		}else {
-			$("#spanEmail").html("");
-			$("#spanEmail").attr('hidden',true);
 		}
-		var	birth = $("#birth").val();
-		if(birth == ""){
-			$("#spanBirth").html("<b style='color:red;margin-top:auto;'>出生年月日为空!</b>");
-			$("#spanBirth").attr('hidden',false);
+		if(!birthonblur()){
 			return ;
-		}else{
-			$("#spanBirth").html("");
-			$("#spanBirth").attr('hidden',true);
 		}
 		//校验用户名重复
 		
@@ -125,7 +95,69 @@
 		}
 	}
 	
-	function formValidate(){
+	function userNameonblur(){
+		var username = $("#username").val();
+		if(username == ""){
+			$("#spanUsername").html("<b style='color:red;margin-top:auto;'>用户名为空!</b>");
+			$("#spanUsername").attr('hidden',false);
+			return false;
+		}else{
+			$("#spanUsername").html("");
+			$("#spanUsername").attr('hidden',true);
+			return true;
+		}
+	}
+	
+	function passwordonblur(){
+		var	password = $("#password").val();
+		if(password == ""){
+			$("#spanPassword").html("<b style='color:red;margin-top:auto;'>密码为空!</b>");
+			$("#spanPassword").attr('hidden',false);
+			return false;
+		}else{
+			$("#spanPassword").html("");
+			$("#spanPassword").attr('hidden',true);
+			return true;
+		}
+	}
+	
+	function rpasswordobblur(){
+		var	rpassword = $("#rpassword").val();
+		if(rpassword == ""){
+			$("#spanRpassword").html("<b style='color:red;margin-top:auto;'>再次输入密码为空!</b>");
+			$("#spanRpassword").attr('hidden',false);
+			return false;
+		}else{
+			$("#spanRpassword").html("");
+			$("#spanRpassword").attr('hidden',true);
+			return true;
+		}
+	}
+	
+	function emailonblur(){
+		var	email = $("#email").val();
+		if(email == ""){
+			$("#spanEmail").html("<b style='color:red;margin-top:auto;'>邮箱为空!</b>");
+			$("#spanEmail").attr('hidden',false);
+			return false;
+		}else {
+			$("#spanEmail").html("");
+			$("#spanEmail").attr('hidden',true);
+			return true;
+		}
+	}
+	
+	function birthonblur(){
+		var	birth = $("#birth").val();
+		if(birth == ""){
+			$("#spanBirth").html("<b style='color:red;margin-top:auto;'>出生年月日为空!</b>");
+			$("#spanBirth").attr('hidden',false);
+			return false;
+		}else{
+			$("#spanBirth").html("");
+			$("#spanBirth").attr('hidden',true);
+			return true;
+		}
 	}
 </script>
 </head>
@@ -155,29 +187,29 @@
 					<form class="form col-md-12 center-block" action="" id="registerForm" method="post">
 							<div class="form-group">
 								<label for="username" >用户名</label>
-								<input class="form-control" name="username" type="text" id="username" maxlength="10" placeholder="请输入用户名"  autofocus />
+								<input class="form-control" name="username" type="text" id="username" maxlength="10" placeholder="请输入用户名" onkeyup="userNameonblur()" />
 								<label id="spanUsername" hidden="true"></label>
 							</div>
 							<div class="form-group">
 								<label for="password" >密码</label>
-								<input class="form-control" name="password" type="password" id="password" maxlength="20" placeholder="请输入密码" />
+								<input class="form-control" name="password" type="password" id="password" maxlength="20" placeholder="请输入密码" onkeyup="passwordonblur()" />
 								<label id="spanPassword" hidden="true"></label>
 							</div>
 							<div class="form-group">
 								<label for="rpassword">再次输入密码</label>
 								<input class="form-control" name="rpassword" type="password" id="rpassword" maxlength="20" 
-									placeholder="请再次输入密码" onblur="pwdValidate()" />
+									placeholder="请再次输入密码" onkeyup="rpasswordobblur();pwdValidate()" />
 								<label id="spanRpassword" hidden="true"></label>
 							</div>
 							<div class="form-group">
 								<label for="email" >Email</label>
 								<input class="form-control" name="email" type="email" id="email" maxlength="20" placeholder="Email" 
-								onblur="emailValidate()" />
+								onkeyup="emailonblur();emailValidate()" />
 								<label id="spanEmail" hidden="true"></label>
 							</div>
 							<div class="form-group">
 								<label for="birthDate" >出生年月</label>
-								<input class="form-control" name="birth" type="date" id="birthDate" />
+								<input class="form-control" name="birth" type="date" id="birthDate" onkeyup="birthonblur()" />
 								<label id="spanBirth" hidden="true"></label>
 							</div>
 							<div class="form-group">

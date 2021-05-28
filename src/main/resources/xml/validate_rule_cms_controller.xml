@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE urls SYSTEM "org/catdou/validate/xml/validate_param_rule_config.dtd">-->
+<urls>
+    <item url="cms/AllUser" method="post" maxBodySize="1000" sort="0">
+
+    </item>
+</urls>

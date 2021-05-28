@@ -2,6 +2,7 @@ package com.luoxiao.model;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class User {
@@ -100,6 +101,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static boolean checkPassword(String password) {
+        if (StringUtils.isBlank(password)) {
+            return false;
+        }
+        // check complex
+        return true;
     }
 
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE urls SYSTEM "org/catdou/validate/xml/validate_param_rule_config.dtd">-->
+<urls>
+    <item url="/user/regist" method="post" maxBodySize="1000" sort="0">
+        <urlParams>
+            <param name="id" nullable="true">
+                <rules>
+                    <rule name="REGEXP" value="\d+{0,20}" />
+                </rules>
+            </param>
+            <param name="username" nullable="false">
+                <rules>
+                    <rule name="REGEXP" value="\s+{0,20}" />
+                </rules>
+            </param>
+            <param name="password" nullable="false">
+                <rules>
+                    <rule name="OGNL" value="@com.luoxiao.model.User@checkPassword" />
+                </rules>
+            </param>
+        </urlParams>
+    </item>
+    <item url="/updateRoles" method="post" maxBodySize="1000" sort="0">
+        <urlParams>
+            <param name="userId" nullable="true">
+                <rules>
+                    <rule name="REGEXP" value="\d+{0,20}" />
+                    <rule name="OGNL" value="userId &gt;= 1 and userId &lt;= 10000" />
+                </rules>
+            </param>
+            <param name="roleStr" nullable="false">
+                <rules>
+                    <rule name="REGEXP" value="\s+{0,20}" />
+                </rules>
+            </param>
+        </urlParams>
+    </item>
+</urls>

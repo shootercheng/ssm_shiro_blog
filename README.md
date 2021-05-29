@@ -4,12 +4,12 @@
 
 # add a filter
 ```xml
-  <filter>
+   <filter>
     <filter-name>paramValidator</filter-name>
-    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>org.catdou.validate.filter.ParamFilter</filter-class>
     <init-param>
       <param-name>type</param-name>
-      <param-value>UTF-8</param-value>
+      <param-value>xml</param-value>
     </init-param>
     <init-param>
       <param-name>path</param-name>

@@ -1,6 +1,6 @@
 # param-validator for web.xml
 
-[https://github.com/shootercheng/param-validator-demo](https://github.com/shootercheng/param-validator-demo)
+[https://github.com/CatDou/param-validator](https://github.com/CatDou/param-validator)
 
 # add a filter
 ```xml

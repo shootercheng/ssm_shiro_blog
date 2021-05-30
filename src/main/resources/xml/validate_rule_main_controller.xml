@@ -15,7 +15,7 @@
             </param>
             <param name="password" nullable="false">
                 <rules>
-                    <rule name="OGNL" value="@com.luoxiao.model.User@checkPassword" />
+                    <rule name="OGNL" value="@com.luoxiao.model.User@checkPassword(password)" />
                 </rules>
             </param>
         </urlParams>
